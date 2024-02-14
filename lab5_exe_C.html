@@ -172,7 +172,7 @@ Description : DOM Elements.
 			</section>
 			<article>
 				<h2>What is full-stack?</h2>
-				<p>
+				<p> 
 					Full-stack development stands at the cutting edge of modern web and
 					software development, embodying a comprehensive approach to building
 					applications. A full-stack developer is akin to a versatile artisan,
@@ -210,18 +210,47 @@ Description : DOM Elements.
 
 				// Task 2: Change the background color of the navigation bar
 				
-
+				
 				// Task 3: Hide the section titled 'What is full-stack?'
+				const headings = document.querySelectorAll("h2");
+				let whatIsFullstack;
 
+				for (const heading of headings) {
+    				if (heading.textContent === 'What is full-stack?') {
+        				whatIsFullstack = heading;
+        				break;	
+    				}
+				}
 
+				if (whatIsFullstack) {
+   		 			whatIsFullstack.parentElement.style.display = "none";
+				}
 				// Task 4: Create a new <p> element and append it to the 'About Us' section
+				const paragraph = document.createElement('p')
+				paragraph.textContent = "This is a new paragraph";
+				const Aboutus = Array.from(document.querySelectorAll('h2')).find((h2) => h2.textContent === "About Us");
 
+				if(Aboutus){
+					Aboutus.appendChild(paragraph)
+					paragraph.style.color = 'red';
 
+				}
+				
+				
 				// Task 5: Add placeholders to input elements based on their corresponding label IDs
+				const labels = document.querySelectorAll('label');
 
+				Array.from(labels).forEach(label => {
+    			
+    			const id = label.getAttribute('for');
+    			const inputElement = document.getElementById(id);
+    			// Setting the 'placeholder' attribute of the input element 
+    			inputElement.setAttribute('placeholder', id);
+				});
 
 				// Task 6: Set the src attribute of the image
 
+				const image = document.getElementById
 
 				// Task 7: Add a new item in the navigation menu
 
