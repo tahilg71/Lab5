@@ -78,12 +78,11 @@ function performOperation(operation) {
     console.log("1st Matrix",matrix1);
     console.log("2nd Matrix", matrix2);
     console.log("Operation", operation);
-    // Just a test result
-    let result = [1, 2, 3, 4, 5, 6, 7, 8];
-    if (operation === 'add') {addMatrices(matrix1, matrix2);}
-    else if (operation === 'subtract') {subtractMatrices(matrix1, matrix2);}
-    else if (operation === 'multiply') {multiplyMatrices(matrix1, matrix2);}
-    showResult('The Result', 'matrix3', 2, 4, result); // use suitable function for printing results
+    let result = []
+    if (operation === 'add') {result = addMatrices(matrix1, matrix2);}
+    else if (operation === 'subtract') {result = subtractMatrices(matrix1, matrix2);}
+    else if (operation === 'multiply') {result = multiplyMatrices(matrix1, matrix2);}
+    showResult2D('The Result', 'matrix3', result); // use suitable function for printing results
 }
 
 const getMatrixData1D = function (matrixId) {
@@ -121,8 +120,7 @@ const getMatrixData2D = function (matrixId) {
 // Add your matrix calculation functions here
 // The functions must check the posibility of calculation too.
 function addMatrices(matrix1, matrix2){ 
-    if (matrix1.length !== matrix2.length ||
-        matrix1[0] !== matrix2[0].length) {
+    if (matrix1.length !== matrix2.length || matrix1[0].length !== matrix2[0].length) {
         document.getElementById('matrix3').innerHTML = "Matrices needs to be same size of rows and columns";
         return [];
     }
@@ -138,7 +136,7 @@ function addMatrices(matrix1, matrix2){
 }
 const subtractMatrices = function (matrix1, matrix2) { 
 	if (matrix1.length !== matrix2.length ||
-        matrix1[0] !== matrix2[0].length) {
+        matrix1[0].length !== matrix2[0].length) {
         document.getElementById('matrix3').innerHTML = "Matrices needs to be same size of rows and columns";
         return [];
     }
@@ -159,15 +157,14 @@ const multiplyMatrices = (matrix1, matrix2) => {
     }
     let finalmatrix = [];
     for (let i = 0; i < matrix1.length; i++) {
-        let matrixrow = [];
+        finalmatrix[i] = [];
         for (let j = 0; j < matrix2[0].length; j++) {
             let sumrowelement = 0;
             for (let n = 0; n < matrix2.length; n++) {
                 sumrowelement += matrix1[i][n] * matrix2[n][j];
             }
-            matrixrow.push(sumrowelement);
+            finalmatrix[i][j] = sumrowelement;
         }
-        finalmatrix.push(matrixrow);
     }
     return finalmatrix;
 };
