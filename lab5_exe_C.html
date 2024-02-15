@@ -37,7 +37,7 @@ Description : DOM Elements.
 				flex-grow: 1; /* Allows the container to expand and fill the available space */
 			}
 			nav {
-				background-color: lightblue;
+				background-color: coral;
 				padding: 1px 10px;
 			}
 			nav a {
@@ -79,13 +79,14 @@ Description : DOM Elements.
 				}
 			}
 			.companyName {
-				/* border: 1px solid red; */
+				border: 1px solid red;
+
 			}
 		</style>
 	</head>
 	<body>
 		<header>
-			<h1>Welcome to <span class="Tahil">&nbsp;</span> Website</h1>
+			<h1>Welcome to <span class="companyName">&nbsp;</span> Website</h1>
 		</header>
 		<nav>
 			<ul>
@@ -106,10 +107,10 @@ Description : DOM Elements.
 				<h2>About Us</h2>
 				<p>This is a paragraph about our company.</p>
 				<img src="./images/logo.svg" alt="Company logo" width="100px" />
-                
+
 				<h3>Our Journey</h3>
 				<p>
-					Welcome to our <span class="Tahil">&nbsp;</span>, a place where
+					Welcome to our <span class="companyname">&nbsp;</span>, a place where
 					innovation meets excellence. Our story began in the year 2010, in the
 					heart of Calgary, with a small team of passionate individuals
 					dedicated to making a difference in the software. Over the years,
@@ -118,7 +119,7 @@ Description : DOM Elements.
 				</p>
 				<h3>Our Mission</h3>
 				<p>
-					At our <span class="Tahil">&nbsp;</span>, our mission is to
+					At our <span class="companyname">&nbsp;</span>, our mission is to
 					empower businesses and individuals through cutting-edge technology and
 					bespoke services. We believe in pushing boundaries, challenging the
 					status quo, and constantly innovating to stay ahead of the curve. Our
@@ -206,10 +207,17 @@ Description : DOM Elements.
 		<script>
 			document.addEventListener('DOMContentLoaded', function afterRender() {
 				// Task 1: Set the text content of all elements with the class 'companyName' and remove their border
-
+				const Company_Name = document.querySelectorAll('.companyName');
+				Company_Name.forEach(element => {
+					element.textContent = 'Tahil';
+					element.style.border = 'none';
+				})
 
 				// Task 2: Change the background color of the navigation bar
-				
+				const nav_bar = document.querySelectorAll('nav');
+				nav_bar.forEach(element => {
+					element.style.backgroundColor = 'lightblue';
+				})
 				
 				// Task 3: Hide the section titled 'What is full-stack?'
 				const headings = document.querySelectorAll("h2");
@@ -250,18 +258,31 @@ Description : DOM Elements.
 
 				// Task 6: Set the src attribute of the image
 
-				const image = document.getElementById
+				const image = document.querySelector('img');
+				image.setAttribute("src", "example.svg");
 
 				// Task 7: Add a new item in the navigation menu
-
-
+				let navigate_item = document.createElement('li');
+				let navigate_Link = document.createElement('a');
+				navigate_Link.setAttribute('href','#');
+				navigate_Link.textContent = 'Blog';
+				navigate_item.appendChild(navigate_Link);
+				document.querySelector('nav ul').appendChild(navigate_item);
+		
 				// Task 8: Change the submit button text upon clicking and make it disabled
-
+				let submitButton = document.querySelector('input[type="button"]');
+				submitButton.addEventListener('click', function(){
+					this.value = 'Submitted';
+					this.disable = true;
+				});
 
 				// Task 9: Change the text color of each item in the 'Related Links' to green
-
+				document.querySelectorAll('aside ul li a').forEach((link)=> {
+					link.style.color = 'green';
+				})
 
 				// Task 10: Add a red solid border to the footer
+				document.querySelector('footer').style.border = '2px solid red';
 			});
 		</script>
 	</body>
